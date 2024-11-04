@@ -1,0 +1,19 @@
+# Ignora o ambiente virtual e o arquivo de banco de dados SQLite
+env/
+venv/
+db.sqlite3
+
+# Ignora arquivos de configuração e variáveis sensíveis
+.env
+
+# Ignora arquivos de cache Python
+__pycache__/
+*.pyc
+
+# Ignora pastas e arquivos criados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignora configurações de IDEs comuns
+.vscode/
+.idea/

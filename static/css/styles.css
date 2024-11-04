@@ -1,0 +1,90 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto; /* Centraliza o container */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #343a40;
+    text-align: center;
+}
+
+/* Estilizando as seções do formulário */
+.form-group {
+    margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botão */
+button {
+    padding: 10px 15px;
+    background-color: #28a745; /* Cor verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Faz o botão ocupar a largura total */
+    width: 100%; /* Largura total */
+}
+
+button:hover {
+    background-color: #218838; /* Cor verde mais escura */
+    transform: scale(1.05);
+}
+
+/* Mensagens */
+#mensagem {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #28a745;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    select {
+        font-size: 14px; /* Ajusta o tamanho da fonte em telas pequenas */
+    }
+
+    button {
+        margin-top: 10px;
+    }
+}

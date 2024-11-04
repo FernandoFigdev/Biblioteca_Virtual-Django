@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Home do Leitor</title>
+    <link rel="stylesheet" href="{% static 'css/styles_home.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Bem-vindo, {{ user.username }}</h2>
+
+        <!-- Seção de Livros Disponíveis -->
+        <section id="livros-disponiveis">
+            <h3>Livros Disponíveis para Empréstimo</h3>
+            <ul>
+                {% for livro in livros_disponiveis %}
+                    <li>
+                        <strong>{{ livro.titulo }}</strong> - {{ livro.autor }}
+                        <button onclick="solicitarEmprestimo({{ livro.id }})">Solicitar Empréstimo</button>
+                    </li>
+                {% empty %}
+                    <li>Nenhum livro disponível no momento.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Seção de Histórico de Empréstimos -->
+        <section id="historico-emprestimos">
+            <h3>Seu Histórico de Empréstimos</h3>
+            <ul>
+                {% for emprestimo in historico_emprestimos %}
+                    <li>
+                        <strong>{{ emprestimo.livro.titulo }}</strong> - Status: {{ emprestimo.status }}
+                        {% if emprestimo.data_devolucao %}
+                            | Devolvido em: {{ emprestimo.data_devolucao }}
+                        {% else %}
+                            | Data de devolução prevista: {{ emprestimo.data_devolucao_prevista }}
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>Você ainda não realizou nenhum empréstimo.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <p id="mensagem"></p>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h4>Confirmar Empréstimo</h4>
+            <p id="modal-text">Você tem certeza que deseja solicitar este livro?</p>
+            <button id="confirmar-btn" onclick="confirmarEmprestimo()">Confirmar</button>
+        </div>
+    </div>
+    
+    <script>
+        let livroIdGlobal;
+
+        function solicitarEmprestimo(livroId) {
+            livroIdGlobal = livroId; // Armazena o ID do livro globalmente
+            document.getElementById('modal-text').textContent = `Você tem certeza que deseja solicitar o livro com ID: ${livroId}?`;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function fecharModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        async function confirmarEmprestimo() {
+            const csrftoken = '{{ csrf_token }}';
+            try {
+                const response = await fetch('/api/emprestimos/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({
+                        livro: livroIdGlobal,
+                    }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById('mensagem').textContent = "Empréstimo solicitado com sucesso!";
+                    fecharModal(); // Fecha o modal
+                } else {
+                    document.getElementById('mensagem').textContent = data.detail || "Erro ao solicitar empréstimo.";
+                    fecharModal();
+                }
+            } catch (error) {
+                document.getElementById('mensagem').textContent = "Erro ao conectar com o servidor.";
+            }
+        }
+    </script>
+</body>
+</html>
