@@ -42,8 +42,8 @@ O projeto segue a estrutura padrão de um projeto Django, com aplicativos para u
 1. **Clone o Repositório:**
 
     ```bash
-    git clone https://github.com/seu-usuario/sistema-emprestimos-django.git
-    cd sistema-emprestimos-django
+    git clone https://github.com/FernandoFigdev/Biblioteca_Virtual-Django.git
+    cd Biblioteca_Virtual-Django
     ```
 
 2. **Crie um Ambiente Virtual:**
