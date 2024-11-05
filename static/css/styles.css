@@ -6,23 +6,42 @@ body {
     background-color: #e9ecef;
 }
 
+#livros {
+    background-image: url('/static/images/fundo_livro.jpeg'); /* Caminho para a imagem de fundo */
+    background-size: cover; /* Faz com que a imagem cubra todo o fundo */
+    background-position: center; /* Centraliza a imagem no fundo */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+}
+
+.usuario_fundo {
+    background-image: url('/static/images/fundo_registro.jpg'); /* Caminho para a imagem de fundo */
+    background-size: cover; /* Faz com que a imagem cubra todo o fundo */
+    background-position: center; /* Centraliza a imagem no fundo */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+}
+
 .container {
-    max-width: 900px;
-    margin: 40px auto; /* Centraliza o container */
+    max-width: 900px;  /* Definindo o tamanho do container */
+    margin: 40px auto;
     padding: 20px;
     background-color: #ffffff;
+    opacity: 0.95;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    position: relative; /* Garante que o fundo do container não sobreponha conteúdo */
+    z-index: 1; /* Torna o conteúdo acima do fundo */
 }
 
 h2 {
     color: #343a40;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 /* Estilizando as seções do formulário */
 .form-group {
-    margin-bottom: 20px; /* Espaçamento entre os campos */
+    margin-bottom: 20px;
 }
 
 label {
@@ -36,25 +55,37 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 select {
-    width: 100%;
-    padding: 10px;
+    width: 100%; /* Ajuste para garantir que os campos ocupem toda a largura do container */
+    padding: 12px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; /* Garante que padding e border não ultrapassem a largura */
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 /* Botão */
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     background-color: #28a745; /* Cor verde */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: block; /* Faz o botão ocupar a largura total */
+    font-size: 16px;
+    text-align: center;
     width: 100%; /* Largura total */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
@@ -74,6 +105,11 @@ button:hover {
 @media (max-width: 600px) {
     .container {
         padding: 15px;
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 22px; /* Reduzindo o título para telas pequenas */
     }
 
     input[type="text"],
@@ -82,6 +118,7 @@ button:hover {
     input[type="number"],
     select {
         font-size: 14px; /* Ajusta o tamanho da fonte em telas pequenas */
+        padding: 10px;  /* Ajuste do padding para evitar que o campo saia da tela */
     }
 
     button {

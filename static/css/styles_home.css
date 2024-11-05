@@ -3,7 +3,26 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e9ecef;
+}
+
+.admin {
+    background-image: url('/static/images/fundo_admin.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    z-index: -1; /* Garante que o fundo fique abaixo do conteúdo */
+    position: relative;
+}
+
+.leitor_fundo {
+    background-image: url('/static/images/fundo_usuario.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    z-index: -1; /* Garante que o fundo fique abaixo do conteúdo */
+    position: relative;
 }
 
 .container {
@@ -11,8 +30,11 @@ body {
     margin: 40px auto;
     padding: 20px;
     background-color: #ffffff;
+    opacity: 0.97;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative; /* Garante que o fundo do container não sobreponha conteúdo */
+    z-index: 1; /* Torna o conteúdo acima do fundo */
 }
 
 h2, h3 {
